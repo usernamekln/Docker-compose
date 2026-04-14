@@ -1,19 +1,19 @@
-name : Dockerpipeline 
+name: Dockerpipeline
+
 on:
-  push: 
+  push:
     branches:
       - main
-    on:
   workflow_dispatch:
-  jobs:
+
+jobs:
   my_job:
     name: docker
     runs-on: ubuntu-22.04
 
- steps:
-   - name : checkout sources code
-     uses : checkout/action@v4
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
 
-    - name : built image 
-      uses : docker compose up 
-    
+      - name: Build and start containers
+        run: docker compose up -d --build
