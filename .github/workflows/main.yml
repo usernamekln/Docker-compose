@@ -1,10 +1,19 @@
+name : Dockerpipeline 
 on:
-  pull_request:
+  push: 
     branches:
-    - main
+      - main
     on:
   workflow_dispatch:
   jobs:
   my_job:
-    name: deploy to staging
+    name: docker
     runs-on: ubuntu-22.04
+
+ steps:
+   - name : checkout sources code
+     uses : checkout/action@v4
+
+    - name : built image 
+      uses : docker compose up 
+    
